@@ -6,7 +6,7 @@ export default {
     },
     header_menu: {
         logout: 'Logout',
-        login: 'Login',
+        login: 'Merchant Login',
         language: 'Language'
     },
     side_bar: {
@@ -123,7 +123,8 @@ export default {
         available_balance: 'Available Balance',
         amount: 'Amount',
         to_bank_account: 'To Bank Account',
-        payment_pwd: 'Payment Password'
+        payment_pwd: 'Payment Password',
+        google_pwd: 'Google Code'
     },
     order: {
         order_no: 'Order Number',

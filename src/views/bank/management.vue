@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, toRaw } from "vue";
 import { ElMessage } from 'element-plus'
-import { findMerchantBankCardByMerchantId, addOrUpdateMerchantBankCard, deleteMerchantBankCard } from '~/api/api';
-import { Delete, Edit } from '@element-plus/icons-vue'
+import { findMerchantBankCardByNewMerchantId, addOrUpdateMerchantBankCard, deleteMerchantBankCard } from '~/api/api';
+import { Delete, Edit, Search } from '@element-plus/icons-vue'
 import moment from "moment";
 
 interface BankCard {
@@ -15,10 +15,19 @@ interface BankCard {
     id?: number
   }
 
+let pager = reactive({
+  pageNum: 1,
+  pageSize: 10,
+  total: 0
+})
 
 const loading = ref(false);
 
 const dialogVisible = ref(false);
+
+const query = reactive({
+  bankCardAccount: '',
+})
 
 let tableData = ref([]);
 
@@ -27,10 +36,22 @@ const submitForm = reactive(<BankCardEdit>{});
 
 const getList = () => {
   loading.value = true;
-  findMerchantBankCardByMerchantId().then((res : any) => {
-    tableData.value = res.data.data?.reverse();
+  let _query = {...pager, ...query};
+  findMerchantBankCardByNewMerchantId(_query).then((res : any) => {
+    tableData.value = res.data.data.content;
+    pager.total = res.data.data.total;
     loading.value = false;
   });
+}
+
+const handleSizeChange = (pageSize: number) => {
+    pager.pageSize = pageSize;
+    getList();
+}
+
+const handleCurrentChange = (pageNum: number) => {
+    pager.pageNum = pageNum;
+    getList();
 }
 
 const onEdit = (row: any) => {
@@ -76,6 +97,11 @@ const onSave = () => {
 
 }
 
+const onSearch = () => {
+  pager.pageNum = 1
+  getList();
+}
+
 getList();
 
 </script>
@@ -83,13 +109,18 @@ getList();
 <template>
   <div class="warpper">
   <div class="op">
+      <div class="search-bar">
+        <label class="el-form-item__label">{{$t('bank.account_num')}}</label>
+        <el-input v-model="query.bankCardAccount" @keyup.enter.native="onSearch" clearable :placeholder="$t('search_bar.placeholder')" />
+        <el-button type="primary" @click="onSearch">{{$t('search_bar.search') }}</el-button>
+      </div>
       <el-button style="float: right" type="primary" @click="onAdd">{{$t('search_bar.bankAdd')}}</el-button>
   </div>
   <el-table v-loading="loading" :data="tableData" border style="width: 100%">
     <el-table-column prop="openAccountBank" :label="$t('bank.bank_name')"/>
     <el-table-column prop="accountHolder" :label="$t('bank.account_name')" width="180" />
     <el-table-column prop="bankCardAccount" :label="$t('bank.account_num')" width="180" />
-    <el-table-column prop="createTime" :label="$t('bank.last_change_time')" width="200" />
+    <el-table-column prop="bankInfoLatelyModifyTime" :label="$t('bank.last_change_time')" width="200" />
     <el-table-column :label="$t('table.operate')" width="160">
       <template #default="scope">
           <el-button-group>
@@ -103,6 +134,16 @@ getList();
       </template>
     </el-table-column>
   </el-table>
+  <div class="pager-box-cus" >
+      <el-pagination 
+        v-model:currentPage="pager.pageNum"
+        v-model:page-size="pager.pageSize"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        background 
+        layout="prev, pager, next" 
+        :total="pager.total" />
+  </div>
     <el-dialog
     v-model="dialogVisible"
     :title="$t('bank.edit_bank_card')"
@@ -134,6 +175,8 @@ getList();
 <style scoped lang="scss">
 .op {
     height: 50px;
+    display: flex;
+    justify-content: space-between;
 }
 .searchBar {
   margin-bottom: 10px;
@@ -154,5 +197,16 @@ getList();
 }
 .el-form-item {
   display: block;
+}
+
+.search-bar{
+  display: flex;
+  width: 420px;
+  // height: 32px;
+  flex-wrap: nowrap;
+  align-items: center;
+  label {
+    font-size: 14px;
+  }
 }
 </style>

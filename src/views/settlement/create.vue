@@ -18,7 +18,8 @@ interface BankAccount {
 interface Settlement {
   withdrawAmount: number,
   merchantBankCardId: string,
-  moneyPwd: string
+  moneyPwd: string,
+  googlePwd: string
 }
 
 const loading = ref(false);
@@ -119,6 +120,9 @@ init();
         </el-form-item>
         <el-form-item :label="$t('settlement.payment_pwd')">
           <el-input type="password" v-model="submitForm.moneyPwd" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
+        </el-form-item>
+        <el-form-item :label="$t('settlement.google_pwd')">
+          <el-input type="password" v-model="submitForm.googlePwd" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
         </el-form-item>
         <el-form-item>
            <el-button type="primary" @click="onSubmit">{{$t('search_bar.submint')}}</el-button>

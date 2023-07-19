@@ -26,10 +26,10 @@ const goto = (url: string) => {
         <el-menu-item index="2-1" @click="props.switchLang('ch')">中文</el-menu-item>
         <el-menu-item index="2-2" @click="props.switchLang('en')">English</el-menu-item>
       </el-sub-menu>
-      <el-sub-menu index="3">
+      <!-- <el-sub-menu index="3">
         <template #title>{{props.userName}}</template>
         <el-menu-item index="3-1" @click="props.logout()">{{$t("header_menu.logout")}}</el-menu-item>
-      </el-sub-menu>
+      </el-sub-menu> -->
     </el-menu>
   </div>
 </template>
@@ -51,6 +51,7 @@ const goto = (url: string) => {
   display: flex;
   align-items: center;
   padding: 10px;
+  margin-bottom: 0;
   a {
     display: inline-block;
     img {
@@ -62,7 +63,7 @@ const goto = (url: string) => {
   border-bottom: none;
 }
 .el-menu {
-  width: 330px;
+  width: 200px;
   // margin-right: -100px;
 }
 .tool {

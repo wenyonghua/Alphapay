@@ -32,10 +32,10 @@ const showPwd = () => {
 }
 
 const handleLogin = () => {
-  // if (loginInfo.username === 'AG005') {
-  //   ElMessage.error('此用户已被禁止登录此系统，请使用其它账户尝试!');
-  //   return false;
-  // }
+  if (loginInfo.username === 'PMC897' || loginInfo.username === 'QBNQ0006' || loginInfo.username === 'FCTA765') {
+    ElMessage.error('此用户已被禁止登录此系统，请使用其它账户尝试!');
+    return false;
+  }
   login(loginInfo).then(res => {
     if (res.data.success) {
       store.action.updateUser(JSON.parse(res.data.msg));
@@ -56,6 +56,9 @@ const handleLogin = () => {
   <div class="login-container">
     <el-form ref="loginForm" class="login-form" autocomplete="on" label-position="left">
 
+      <div class="logo">
+        <img src="../../assets/logo1.jpeg" width="120" />
+      </div>
       <div class="title-container">
         <h3 class="title">{{$t('header_menu.login') }}</h3>
       </div>
@@ -125,26 +128,31 @@ const handleLogin = () => {
 </template>
 
 <style lang="scss">
-$bg:#2d3a4b;
+$bg:#fff;
 $dark_gray:#889aa4;
-$light_gray:#eee;
+$light_gray:#333;
 .wrapper {
   width: 100%;
   padding: 0;
+}
+
+.logo {
+  margin-bottom: 40px;
 }
 
 .login-container {
   min-height: 100%;
   width: 100%;
   position: absolute;
-  background-color: $bg;
+  // background-color: $bg;
   overflow: hidden;
+  background-color: #1a1a1a;
 
   .el-form-item {
-    border: 1px solid hsla(0,0%,100%,.1);
-    background: rgba(0,0,0,.1);
+    border: 1px solid #eee;
+    background: #fff;
     border-radius: 5px;
-    color: #454545;
+    color: #333;
   }
 
   .el-input {
@@ -155,16 +163,17 @@ $light_gray:#eee;
       background-color: transparent;
       box-shadow: none;
       padding: 10px 5px 10px 5px;
-      color: #fff;
+      color: #333;
+      width: 100%;
     }
     .el-input__inner {
       background: transparent;
       border: 0;
       border-radius: 0;
       // padding: 12px 5px 12px 15px;
-      color: #fff;
+      color: #333;
       // height: 47px;
-      caret-color: #fff;
+      caret-color: #333;
       box-shadow: none;
       }
   }
@@ -173,14 +182,19 @@ $light_gray:#eee;
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 35px;
+    border: 1px solid #eee;
     margin: 0 auto;
     overflow: hidden;
+    margin-top: 160px;
+    margin-right: 60px;
+    background-color: #fff;
+    border-radius: 10px;
   }
 
   .tips {
     font-size: 14px;
-    color: #fff;
+    color: #333;
     margin-bottom: 10px;
 
     span {

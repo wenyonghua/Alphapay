@@ -1,16 +1,15 @@
 {
-  "name": "fastpay",
+  "name": "Alphapay",
   "private": true,
   "version": "0.1.0",
   "scripts": {
     "dev": "vite --port 3001",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "axios": "^0.26.1",
-    "echarts": "^5.4.1",
     "element-plus": "^2.2.29",
     "moment": "^2.29.1",
     "qs": "^6.10.3",

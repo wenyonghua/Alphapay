@@ -26,7 +26,7 @@
       </el-menu-item>
     <el-sub-menu index="1">
       <template #title>
-        <el-icon><notebook /></el-icon>
+        <el-icon><Money /></el-icon>
         <span>{{$t('side_bar.create_settlement')}}</span>
       </template>
       <el-menu-item-group>
@@ -36,7 +36,7 @@
       </el-menu-item-group>
     </el-sub-menu>
     <el-menu-item index="/statistical-analysis">
-      <el-icon><tickets /></el-icon>
+      <el-icon><SuitcaseLine /></el-icon>
       <template #title>{{$t('side_bar.merchant_order')}}</template>
     </el-menu-item>
     <el-menu-item index="/bank-management">
@@ -44,15 +44,15 @@
       <template #title>{{$t('side_bar.bank_management')}}</template>
     </el-menu-item>
     <el-menu-item index="/merchant-paylist">
-      <el-icon><wallet /></el-icon>
+      <el-icon><Collection /></el-icon>
       <template #title>{{$t('side_bar.transaction_history')}}</template>
     </el-menu-item>
     <el-menu-item index="/payoutmerchant-order">
-      <el-icon><creditCard /></el-icon>
+      <el-icon><Sell /></el-icon>
       <template #title>{{$t('side_bar.payoutmerchant_order')}}</template>
     </el-menu-item>
     <el-menu-item index="/merchant-info">
-      <el-icon><setting /></el-icon>
+      <el-icon><ShoppingBag /></el-icon>
       <template #title>{{$t('side_bar.merchant_info')}}</template>
     </el-menu-item>
   </el-menu>
@@ -103,15 +103,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import {
-  Notebook,
+  Money,
   Postcard,
-  Tickets,
-  Wallet,
-  Setting,
+  ShoppingBag,
+  SuitcaseLine,
+  Collection,
   User,
   SwitchButton,
   House,
-  CreditCard
+  Sell
 } from '@element-plus/icons-vue'
 
 const props = defineProps<{ switchLang: any, logout: any, userName: string }>();

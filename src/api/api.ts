@@ -53,6 +53,10 @@ import { axios as request } from '../utils/request';
     return request.get('/merchant/findMerchantBankCardByMerchantId');
   }
 
+  export const findMerchantBankCardByNewMerchantId = (params: any) => {
+    return request.get('/merchant/findMerchantBankCardByNewMerchantId', {params: params});
+  }
+
   export const getSystemSetting = () => {
     return request.get('/masterControl/getSystemSetting');
   }
