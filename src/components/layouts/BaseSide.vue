@@ -43,7 +43,7 @@
       <el-icon><postcard /></el-icon>
       <template #title>{{$t('side_bar.bank_management')}}</template>
     </el-menu-item>
-    <el-menu-item index="/merchant-paylist">
+    <el-menu-item index="/paylist">
       <el-icon><Collection /></el-icon>
       <template #title>{{$t('side_bar.transaction_history')}}</template>
     </el-menu-item>
@@ -51,7 +51,7 @@
       <el-icon><Sell /></el-icon>
       <template #title>{{$t('side_bar.payoutmerchant_order')}}</template>
     </el-menu-item>
-    <el-menu-item index="/merchant-info">
+    <el-menu-item index="/info">
       <el-icon><ShoppingBag /></el-icon>
       <template #title>{{$t('side_bar.merchant_info')}}</template>
     </el-menu-item>
